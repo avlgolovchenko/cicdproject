@@ -1,5 +1,6 @@
 name: CICD Pipeline
 
+
 on:
   push:
     branches:
@@ -35,8 +36,8 @@ jobs:
 
   publish:
     name: Publish to DockerHub
-    needs: test
-    if: startsWith(github.ref, 'refs/tags/v')
+    needs: test  # Ждем успешного завершения job 'test'
+    if: startsWith(github.ref, 'refs/tags/v')  # Запуск только для тегов
     runs-on: ubuntu-latest
 
     steps:
