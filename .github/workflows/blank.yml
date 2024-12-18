@@ -6,6 +6,9 @@ on:
       - main
     tags:
       - 'v*'
+  pull_request:
+    branches:
+      - main
 
 jobs:
   test:
@@ -32,8 +35,8 @@ jobs:
 
   publish:
     name: Publish to DockerHub
-    needs: test  # Ждем успешного завершения job 'test'
-    if: startsWith(github.ref, 'refs/tags/v')  # Запуск только для тегов
+    needs: test
+    if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
 
     steps:
